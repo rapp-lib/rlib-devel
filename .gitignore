@@ -1,0 +1,8 @@
+/vendor/*
+/composer.phar
+/composer.lock
+
+*_DELETE
+!.gitkeep
+
+/tests/tmp/*

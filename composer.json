@@ -1,0 +1,15 @@
+{
+    "name": "rapp-lib/rlib-devel",
+    "description": "RLIB devel package.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3",
+        "phpunit/phpunit": "~4"
+    },
+    "autoload": {
+        "psr-4": {
+            "R\\Lib\\": "lib/"
+        }
+    }
+}
