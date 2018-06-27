@@ -9,6 +9,9 @@
     "autoload": {
         "psr-4": {
             "R\\Lib\\": "lib/"
-        }
+        },
+        "files": [
+            "functions/required.php"
+        ]
     }
 }
