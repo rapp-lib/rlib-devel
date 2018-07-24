@@ -175,7 +175,8 @@ class ControllerElement extends Element_Base
      */
     public function isSortCol ($col)
     {
-        return in_array($col->getName(), (array)$this->getAttr("sort_fields"));
+        if ( ! $this->getAttr("sort_fields")) return false;
+        return in_array($col->getName(), $this->getSortatbleFieldNames());
     }
     /**
      * デフォルトのソート対象Colを取得
@@ -200,13 +201,18 @@ class ControllerElement extends Element_Base
      */
     public function getListCols ()
     {
-        $cols = $this->getInputCols();
-        $cols = array_filter($cols, function($col){
-            return ! in_array($col->getAttr("type"),array(
-                "assoc", "password", "textarea", "checklist", "checkbox", "file"));
-        });
-        $cols = array_slice($cols,0,5);
-        array_unshift($cols, $this->getTable()->getIdCol());
+        $cols = array();
+        if ($col_names = $this->getAttr("list_fields")) {
+            foreach ($col_names as $col_name) $cols[] = $this->getTable()->getColByName($col_name);
+        } else {
+            $cols = $this->getInputCols();
+            $cols = array_filter($cols, function($col){
+                return ! in_array($col->getAttr("type"),array(
+                    "assoc", "password", "textarea", "checklist", "checkbox", "file"));
+            });
+            $cols = array_slice($cols,0,5);
+            array_unshift($cols, $this->getTable()->getIdCol());
+        }
         return $cols;
     }
     /**
