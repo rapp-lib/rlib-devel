@@ -24,9 +24,9 @@
                 </table>
             {{/foreach}}
         <?=""?>
-<?php elseif ($input_type=="file"): /* if type=="assoc" */ ?>
+<?php elseif ($input_type=="file"): ?>
 {{if <?=$var_name?>.<?=$name?>}}<a href="{{<?=$var_name?>.<?=$name?>}}" target="_blank">ファイル</a>{{/if}}<?=""?>
-<?php elseif ($enum_set = $col->getEnumSet()): /* if type=="assoc" */ ?>
+<?php elseif ($enum_set = $col->getEnumSet()): ?>
 <?php   if (preg_match('!^\$forms!', $var_name)): /* if enum_value in form*/ ?>
 <?php       if ($input_type=="checklist"): ?>
 {{<?=$var_name?>.<?=$name?>|map:$enum["<?=$enum_set->getFullName()?>"]:" "}}<?=""?>
@@ -40,9 +40,11 @@
 {{<?=$var_name?>.<?=$col->getEnumAliasColName()?>}}<?=""?>
 <?php       endif; ?>
 <?php   endif; ?>
-<?php elseif ($input_type=="password"): /* if type=="assoc" */ ?>
+<?php elseif ($input_type=="password"): ?>
 ********<?=""?>
-<?php else: /* if type=="assoc" */ ?>
+<?php elseif ($input_type=="textarea"): ?>
+{{{{<?=$var_name?>.<?=$name?>}}|nl2br nofilter}}<?=""?>
+<?php else: ?>
 {{<?=$var_name?>.<?=$name?>
 <?php if ($input_type=="date"): ?>|date:"Y/m/d"<?php endif; ?>
 <?php if ($input_type=="datetime"): ?>|date:"Y/m/d H:i"<?php endif; ?>
