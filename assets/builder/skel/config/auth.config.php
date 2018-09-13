@@ -27,6 +27,10 @@
 <?php endif;?>
                     }
                 },
+                "on_logout" => function($old_priv){
+                    if ($old_priv) $_SESSION = array();
+                    return false;
+                },
                 "check_priv" => function($priv_req, $priv){
                     if ($priv_req && ! $priv) return false;
                     return true;
