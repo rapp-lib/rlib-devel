@@ -22,7 +22,7 @@ class ColElement extends Element_Base
     public function getEnumSet ()
     {
         if ($enum_set_name = $this->getAttr("enum_set_name")) {
-            return $this->getParent()->getEnum()->getEnumSetByName($this->getName());
+            return $this->getParent()->getEnum()->getEnumSetByName($enum_set_name);
         }
         return null;
     }
