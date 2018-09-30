@@ -9,19 +9,24 @@ class TableElement extends Element_Base
         $cols = (array)$this->getAttr("cols");
         unset($this->attrs["cols"]);
         $enum_sets = array();
+        $enum_name = $this->getName();
         foreach ($cols as $col_name => $col_attrs) {
-            if (in_array($col_attrs["type"],array("select","radioselect","checklist"))) {
-                $enum_sets[$col_name] = array("col_name"=>$col_name);
-                $col_attrs["enum_set_name"] = $this->getName().".".$col_name;
+            // Enum生成
+            $enum_set_name = $col_name;
+            if ($fkey_for = $col_attrs["def"]["fkey_for"]) {
+                $enum_set_name = str_underscore($fkey_for);
+            }
+            if (in_array($col_attrs["type"],array("select", "radioselect", "checklist"))) {
+                $enum_sets[$enum_set_name] = array("table_name"=>$this->getName(), "col_name"=>$col_name);
+                $col_attrs["enum_name"] = $enum_name;
+                $col_attrs["enum_set_name"] = $enum_set_name;
             }
             $this->children["col"][$col_name] = new ColElement($col_name, $col_attrs, $this);
         }
         // Enum登録
         if ($enum_sets) {
-            $enum_attrs = array(
-                "enum_sets" => $enum_sets,
-            );
-            $this->children["enum"][0] = new EnumElement($this->getName(), $enum_attrs, $this);
+            $enum_attrs = array("enum_sets" => $enum_sets);
+            $this->children["enum"][0] = new EnumElement($enum_name, $enum_attrs, $this);
         }
     }
     /**
