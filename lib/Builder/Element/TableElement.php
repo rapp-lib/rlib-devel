@@ -133,6 +133,13 @@ class TableElement extends Element_Base
         return ! $this->getAttr("nodef");
     }
     /**
+     * 物理Tableを持つかどうか
+     */
+    public function hasSchema ()
+    {
+        return $this->attrs["def"]["table_name"]!==false;
+    }
+    /**
      * AuthTableとして参照しているRoleがあれば取得
      */
     public function getAuthRole ()

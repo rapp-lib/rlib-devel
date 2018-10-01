@@ -6,7 +6,11 @@ namespace R\App\Table;
  */
 class <?=$table->getClassName()?> extends Table_App
 {
+<?php if ($table->hasSchema()): ?>
     protected static $table_name = "<?=$table->getDefName()?>";
+<?php else: ?>
+    protected static $table_name = false;
+<?php endif; ?>
     protected static $cols = array(
 <?php foreach ($table->getCols() as $col): ?>
 <?=$col->getColDefSource()?>

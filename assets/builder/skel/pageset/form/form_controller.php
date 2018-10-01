@@ -71,7 +71,11 @@
         $this->forms["entry"]->restore();
         if ( ! $this->forms["entry"]->isEmpty()) {
 <?php if ($table->hasDef()): ?>
+<?php   if ($table->hasSchema()): ?>
             $t = $this->forms["entry"]->getTableWithValues()<?=$pageset->getTableChainSource("save")?>->getSavedRecord();
+<?php   else: ?>
+            $t = $this->forms["entry"]->getRecord();
+<?php   endif; ?>
 <?php else: ?>
             $t = $this->forms["entry"]->getValues();
 <?php endif; ?>

@@ -25,7 +25,11 @@
         if ($this->forms["apply"]->receive($this->input)) {
             if ($this->forms["apply"]->isValid()) {
 <?php if ($table->hasDef()): ?>
-                $t = $this->forms["apply"]->getTableWithValues()<?=$pageset->getTableChainSource("save")?>->getSavedRecord();
+<?php   if ($table->hasSchema()): ?>
+            $t = $this->forms["entry"]->getTableWithValues()<?=$pageset->getTableChainSource("save")?>->getSavedRecord();
+<?php   else: ?>
+            $t = $this->forms["apply"]->getRecord();
+<?php   endif; ?>
 <?php else: ?>
                 $t = $this->forms["apply"]->getValues();
 <?php endif; ?>
