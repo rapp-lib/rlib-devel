@@ -99,7 +99,7 @@
 {{/form}}
 <?php endif; ?>
 
-{{if $p = $ts->getPager()}}
+{{if $p = $ts->getPagerIfHasRecord()}}
 <div class="pager">
     <p>全{{$p->get("count")}}件中 {{$p->get("current_volume")}}件を表示</p>
     <ul class="clearfix">
