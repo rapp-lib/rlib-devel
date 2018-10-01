@@ -108,7 +108,7 @@ class ColElement extends Element_Base
         if ($this->getAttr("type")=="checklist" && $def["type"]=="text" && ! $def["format"]) {
             $def["format"] = "json";
         }
-        return CodeRenderer::elementLine(2, $this->getName(), $def);
+        return CodeRenderer::elementLine(2, $this->getName(), $def, array("breaks"=>1));
     }
     /**
      * $colsの定義行の取得

@@ -69,7 +69,7 @@
 <?=$pageset->getPageByType("complete")->getMethodDecSource()?>
     {
         $this->forms["entry"]->restore();
-        if ( ! $this->forms["entry"]->isEmpty()) {
+        if ( ! $this->forms["entry"]->isEmpty() && $this->forms["entry"]->isValid()) {
 <?php if ($table->hasDef()): ?>
 <?php   if ($table->hasSchema()): ?>
             $t = $this->forms["entry"]->getTableWithValues()<?=$pageset->getTableChainSource("save")?>->getSavedRecord();
