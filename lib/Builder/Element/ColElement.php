@@ -145,6 +145,30 @@ class ColElement extends Element_Base
         return CodeRenderer::elementLine(2, $this->getName(), $def, array("breaks_first"=>1));
     }
     /**
+     * Table.rules中でのrule定義行の取得
+     */
+    public function getTableRuleDefSource ($o=array())
+    {
+        // col=falseのカラムは処理しない
+        if ( ! $this->hasColDef()) return "";
+        $name = $this->getName();
+        // rulesの読み込み
+        $rules = array();
+        foreach ((array)$this->getAttr("rules") as $type=>$params) {
+            // 必須チェックは処理しない
+            if ($type==="required") continue;
+            else $rules[] = array_merge(array($name, $type), (array)$params);
+        }
+        // Enumの指定がある場合、正当性を検証するRuleを自動追加
+        if ($enum_set = $this->getEnumSet()) {
+            $rules[] = array($name, "enum", "enum"=>$enum_set->getFullName());
+        }
+        $source = "";
+        // Ruleの値を配列コードとして出力
+        $source .= CodeRenderer::elementLines(2, $rules);
+        return $source;
+    }
+    /**
      * form.field_def中でのrule定義行の取得
      */
     public function getRuleDefSource ($o=array())
@@ -178,12 +202,10 @@ class ColElement extends Element_Base
                 unset($params["if_register"]);
                 unset($params["if_edit"]);
             }
+            // 必須以外でnodefでなければTableのruleに生成済みなのでスキップ
+            if ($type!=="required" && $this->hasColDef()) continue;
             if ($type==="required" && $params===true) $rules[] = $name;
             else $rules[] = array_merge(array($name, $type), (array)$params);
-        }
-        // Enumの指定がある場合、正当性を検証するRuleを自動追加
-        if ($enum_set = $this->getEnumSet()) {
-            $rules[] = array($name, "enum", "enum"=>$enum_set->getFullName());
         }
         $source = "";
         // Ruleの値を配列コードとして出力

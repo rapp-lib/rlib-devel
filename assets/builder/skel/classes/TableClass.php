@@ -16,6 +16,11 @@ class <?=$table->getClassName()?> extends Table_App
 <?=$col->getColDefSource()?>
 <?php endforeach; ?>
     );
+    protected static $rules = array(
+<?php foreach ($table->getCols() as $col): ?>
+<?=$col->getTableRuleDefSource()?>
+<?php endforeach; ?>
+    );
     protected static $aliases = array(
 <?php foreach ($table->getCols() as $col): ?>
 <?=$col->getAliasDefSource()?>
