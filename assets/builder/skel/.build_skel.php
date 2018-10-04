@@ -117,7 +117,7 @@
                 "pages.send.label" => "URL通知メール送信",
                 "pages.reset.label" => "パスワード再設定",
                 "pages.complete.label" => "パスワード更新完了",
-                "mail_template.template_file" => $dir."/pageset/reminder/mail_template.php",
+                "mail_template.template_file" => $dir."/pageset/reminder/mail_template.html",
             ),
             "list" => array(
                 "use_table" => true,
@@ -151,7 +151,7 @@
                 "label" => "入力",
                 "pages.confirm.label" => "確認",
                 "pages.complete.label" => "完了",
-                "mail_template.template_file" => $dir."/pageset/form/mail_template.php",
+                "mail_template.template_file" => $dir."/pageset/form/mail_template.html",
             ),
             "delete" => array(
                 "use_table" => true,

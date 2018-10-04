@@ -1,0 +1,9 @@
+{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])}}
+{{$message->subject("<?=$mail->getController()->getlabel()?> URL通知メール")}}
+以下のURLより手続きを完了してください。<br/>
+<br/>
+{{$uri}}<br/>
+<br/>
+{{if $ttl}}
+※有効期限 {{time()+$ttl|date:"Y/m/d H:i"}} まで<br/>
+{{/if}}

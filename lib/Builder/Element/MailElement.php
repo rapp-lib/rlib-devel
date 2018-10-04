@@ -25,6 +25,6 @@ class MailElement extends Element_Base
      */
     public function getTemplateFile ()
     {
-        return $this->getName().".php";
+        return $this->getName().".html";
     }
 }

@@ -1,0 +1,11 @@
+<?php if ($mail->getAttr("type")==="admin"): ?>
+{{$message->to($app->config["mail.admin_to"])}}
+<?php else: ?>
+{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])}}
+<?php endif; ?>
+{{$message->subject("<?=$mail->getController()->getlabel()?> 完了通知メール")}}
+下記の通り受け付けました<br/>
+<br/>
+<?php foreach ($mail->getController()->getMailCols() as $col): ?>
+<?=$col->getLabel()?> : <?=$col->getShowSource(array("mail"=>$mail, "page"=>$mail->getController()->getindexPage()))?><br/>
+<?php endforeach; ?>
