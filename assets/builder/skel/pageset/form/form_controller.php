@@ -81,11 +81,11 @@
 <?php endif; ?>
 <?php if ($mail = $pageset->getMailByType("admin")): ?>
             // 管理者通知メールの送信
-            send_mail("<?=$mail->getTemplateFile()?>", array("t"=>$t));
+            app("mailer")->send(array("text"=>"mail://<?=$mail->getTemplateFile()?>"), array("t"=>$t), function($message){});
 <?php endif; ?>
 <?php if ($mail = $pageset->getMailByType("reply")): ?>
             // 自動返信メールの送信
-            send_mail("<?=$mail->getTemplateFile()?>", array("t"=>$t));
+            app("mailer")->send(array("text"=>"mail://<?=$mail->getTemplateFile()?>"), array("t"=>$t), function($message){});
 <?php endif; ?>
             $this->forms["entry"]->clear();
         }

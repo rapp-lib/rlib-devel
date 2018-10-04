@@ -5,7 +5,7 @@
     }
     $controller = $mail->getController();
 
-    $var_name = $o["var_name"] ?: '$mail->vars["t"]';
+    $var_name = $o["var_name"] ?: '$t';
     $name = $col->getName();
 ?>
 <?php if ($col->getAttr("type")=="assoc"): ?>
