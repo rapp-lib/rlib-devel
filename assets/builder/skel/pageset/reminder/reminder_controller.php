@@ -34,7 +34,7 @@
             // URL通知メールの送信
             $uri = $this->uri("id://<?=$pageset->getPageByType("reset")->getLocalPage()?>", array("cred"=>$cred));
 <?php if ($mail = $pageset->getMailByType("mailcheck")): ?>
-            app("mailer")->send(array("text"=>"mail://<?=$mail->getTemplateFile()?>"), array("t"=>$t, "uri"=>$uri, "ttl"=>$ttl), function($message){});
+            app("mailer")->send("mail://<?=$mail->getTemplateFile()?>", array("t"=>$t, "uri"=>$uri, "ttl"=>$ttl), function($message){});
 <?php endif; ?>
             $this->forms["entry"]->clear();
         }

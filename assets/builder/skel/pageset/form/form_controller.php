@@ -85,7 +85,7 @@
 <?php endif; ?>
 <?php if ($mail = $pageset->getMailByType("reply")): ?>
             // 自動返信メールの送信
-            app("mailer")->send(array("text"=>"mail://<?=$mail->getTemplateFile()?>"), array("t"=>$t), function($message){});
+            app("mailer")->send("mail://<?=$mail->getTemplateFile()?>", array("t"=>$t), function($message){});
 <?php endif; ?>
             $this->forms["entry"]->clear();
         }
