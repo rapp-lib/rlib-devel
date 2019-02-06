@@ -1,9 +1,9 @@
 <?php if ($mail->getAttr("type")==="admin"): ?>
-{{$message->to($app->config["mail.admin_to"])}}
+{{$message->to($app->config["mail.admin_to"])|ignore}}
 <?php else: ?>
-{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])}}
+{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])|ignore}}
 <?php endif; ?>
-{{$message->subject("<?=$mail->getController()->getlabel()?> 完了通知メール")}}
+{{$message->subject("<?=$mail->getController()->getlabel()?> 完了通知メール")|ignore}}
 下記の通り受け付けました<br/>
 <br/>
 <?php foreach ($mail->getController()->getMailCols() as $col): ?>

@@ -1,5 +1,5 @@
-{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])}}
-{{$message->subject("<?=$mail->getController()->getlabel()?> URL通知メール")}}
+{{$message->to($t["<?=$mail->getAttr("mail_col_name")?>"])|ignore}}
+{{$message->subject("<?=$mail->getController()->getlabel()?> URL通知メール")|ignore}}
 以下のURLより手続きを完了してください。<br/>
 <br/>
 {{$uri}}<br/>
